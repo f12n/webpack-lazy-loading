@@ -18,5 +18,10 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'Code Splitting'
         })
-    ]
+    ],
+    optimization: {
+        splitChunks: {
+            chunks: 'all'
+        }
+    }
 };
