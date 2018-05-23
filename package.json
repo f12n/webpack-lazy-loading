@@ -1,5 +1,5 @@
 {
-    "name": "webpack-output-management",
+    "name": "webpack-code-splitting",
     "version": "1.0.0",
     "description": "",
     "private": true,

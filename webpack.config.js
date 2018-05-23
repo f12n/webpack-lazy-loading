@@ -7,7 +7,7 @@ module.exports = {
     mode: 'development',
     entry: {
         app: './src/index.js',
-        print: './src/print.js'
+        another: './src/another.js'
     },
     output: {
         filename: '[name].bundle.js',
@@ -16,7 +16,7 @@ module.exports = {
     plugins: [
         new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
-            title: 'Output Management'
+            title: 'Code Splitting'
         })
     ]
 };
