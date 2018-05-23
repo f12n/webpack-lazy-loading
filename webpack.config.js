@@ -5,12 +5,17 @@ const CleanWebpackPlugin = require('clean-webpack-plugin');
 // npx webpack --config webpack.config.js
 module.exports = {
     mode: 'development',
+    devtool: 'cheap-module-eval-source-map',
     entry: {
-        app: './src/index.js',
-        another: './src/another.js'
+        index: './src/index.js' // ,
+            // another: './src/another.js'
     },
     output: {
         filename: '[name].bundle.js',
+
+        // determines the name of non-entry chunk files, For more information:
+        // https://webpack.js.org/configuration/output/#output-chunkfilename
+        chunkFilename: '[name].bundle.js',
         path: path.resolve(__dirname, 'dist')
     },
     plugins: [
@@ -19,9 +24,9 @@ module.exports = {
             title: 'Code Splitting'
         })
     ],
-    optimization: {
+    /* optimization: {
         splitChunks: {
             chunks: 'all'
         }
-    }
+    } */
 };

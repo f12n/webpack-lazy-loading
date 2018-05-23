@@ -25,3 +25,10 @@ Here are some other useful plugins and loaders provided by the community for spl
 The [CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin) is also used to split vendor modules from core application code using [explicit vendor chunks](https://webpack.js.org/plugins/commons-chunk-plugin/#explicit-vendor-chunk).
 
 
+### Dynamic Imports
+
+* The first and recommended approach is to use the [import() syntax](https://webpack.js.org/api/module-methods#import-) that conforms to the [ECMAScript proposal](https://github.com/tc39/proposal-dynamic-import) for dynamic imports. 
+
+* The legacy, webpack-specific approach is to use [require.ensure](https://webpack.js.org/api/module-methods#require-ensure). Let's use the first approach
+
+
