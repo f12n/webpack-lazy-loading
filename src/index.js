@@ -1,7 +1,6 @@
 // import _ from 'lodash';
 
-/* async */
-function getComponent() {
+async function getComponent() {
     /* var element = document.createElement('div');
     var btn = document.createElement('button');
     element.innerHTML = _.join(['Hello', 'webpack'], ' ');
@@ -18,12 +17,15 @@ function getComponent() {
      * instead of just [id].bundle.js. for more infor:
      * https://webpack.js.org/api/module-methods#import-
      */
-    return import ( /* webpackChunkName: "lodash" */ 'lodash').then(_ => {
-        // above: lodash is the "name" of : "chunkFilename: '[name].bundle.js',""
-        var element = document.createElement('div');
-        element.innerHTML = _.default.join(['Hello', 'webpack'], ' ');
-        return element;
-    }).catch(error => 'An error occurred while loading the component');
+    var element = document.createElement('div');
+    const _ = await
+    import ( /* webpackChunkName: "lodash" */ 'lodash');
+
+    const { join } = _.default;
+
+    element.innerHTML = join(['Hello', 'webpack'], ' ');
+    return element;
+
 }
 
 // document.body.appendChild(component());

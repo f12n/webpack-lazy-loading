@@ -16,6 +16,9 @@ module.exports = {
         // determines the name of non-entry chunk files, For more information:
         // https://webpack.js.org/configuration/output/#output-chunkfilename
         chunkFilename: '[name].bundle.js',
+        // non entry chunk will have [name] equals vendors~lodash, 
+        // the full name: vendors~lodash.bundle.js
+        //      if use [id] here means : vendors~lodash
         path: path.resolve(__dirname, 'dist')
     },
     plugins: [
