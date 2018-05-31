@@ -32,3 +32,18 @@ The [CommonsChunkPlugin](https://webpack.js.org/plugins/commons-chunk-plugin) is
 * The legacy, webpack-specific approach is to use [require.ensure](https://webpack.js.org/api/module-methods#require-ensure). Let's use the first approach
 
 
+### Prefetching/Preloading modules
+
+Using these inline directives while declaring your imports allows webpack to output “Resource Hint” which tells the browser that for:
+
+* prefetch(may need in feature): resource is probably needed for some navigation in the future
+* preload(required of currently): resource might be needed during the current navigation
+Simple prefetch example can be having a HomePage component, which renders a LoginButton component which then on demand loads a LoginModal component after being clicked.
+
+Preload directive has a bunch of differences compared to prefetch:
+
+* A preloaded chunk starts loading in parallel to the parent chunk. A prefetched chunk starts after the parent chunk finish.
+* A preloaded chunk has medium priority and instantly downloaded. A prefetched chunk is downloaded in browser idle time.
+* A preloaded chunk should be instantly requested by the parent chunk. A prefetched chunk can be used anytime in the future.
+* Browser support is different.
+
