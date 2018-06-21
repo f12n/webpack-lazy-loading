@@ -1,36 +1,29 @@
-import './chartComponent';
-import './loginButton';
-// import _ from 'lodash';
+import _ from 'lodash';
 
-async function getComponent() {
-    /* var element = document.createElement('div');
-    var btn = document.createElement('button');
-    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
-    btn.innerHTML = 'Click and check the console';
-    btn.onclick = _ => {
-        console.log('what the fuck');
-    };
-    element.appendChild(btn);
-    return element; */
-
-    /**
-     * Note the use of "webpackChunkName" in the comment:
-     * This will cause our separate bundle to be named lodash.bundle.js 
-     * instead of just [id].bundle.js. for more infor:
-     * https://webpack.js.org/api/module-methods#import-
-     */
+function component() {
     var element = document.createElement('div');
-    const _ = await
-    import ( /* webpackChunkName: "lodash" */ 'lodash');
+    var button = document.createElement('button');
+    var br = document.createElement('br');
+    button.innerHTML = 'Click me and look at the console!';
+    element.innerHTML = _.join(['Hello', 'webpack'], ' ');
+    element.appendChild(br);
+    element.appendChild(button);
 
-    const { join } = _.default;
 
-    element.innerHTML = join(['Hello', 'webpack'], ' ');
+    // Note that because a network request is involved, some indication
+    // of loading would need to be shown in a production-level site/app.
+    button.onclick = e =>
+        import ( /* webpackChunkName: "print" */ './print').then(
+            //Note that when using import() on ES6 modules 
+            // you must reference the .default property 
+            // as it's the actual module object that will be returned when the promise is resolved.
+            module => {
+                var print = module.default;
+                print();
+            }
+        );
+
     return element;
-
 }
 
-// document.body.appendChild(component());
-getComponent().then(component => {
-    document.body.appendChild(component);
-})
+document.body.appendChild(component());
